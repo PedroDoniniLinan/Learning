@@ -21,4 +21,4 @@
 
 #### Other
 
-- Self doubt
+- Self doubt (you hear it but the coach is louder)
