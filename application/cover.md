@@ -1,0 +1,8 @@
+Dear Hiring Manager,
+With 5 years of experience in data analytics (most of it remotely), specializing in SQL, DBT, Python, Airlfow and various dashboard tools, I am confident in my ability to contribute effectively to your team. Having worked in a company from its early stages, has given me the opportunity to interact and manage stakeholders across multiple departments and profiles (developers, PMs, sales agents, C levels, etc) with competing priorities using Kanban and Scrum methodologies.
+I also led the design and implementation of ELT pipelines and datamarts for all company. While I focus on building robust and long-term solutions, I am equally adept at delivering quick and actionable insights when needed, ensuring that immediate business needs are met without compromising the overall architecture. My approach combines both speed and sustainability, making me a trusted resource for getting things done efficiently.
+I work well with my team, often helping to brainstorm solutions and tackle complex data tasks. I also have experience training business stakeholders on how to self-serve their data needs, making it quicker for them to make informed decisions.
+In addition to my technical skills, I am fluent in English, Spanish, Portuguese, and French, which has allowed me to effectively communicate with teams and stakeholders from different countries and cultures. I am excited about the opportunity to work for a company that values diversity and understands the importance of having a global perspective.
+Thank you for considering my application. I look forward to the opportunity to discuss my qualifications further and learn more about the position.
+Sincerely,
+Pedro Donini Linan

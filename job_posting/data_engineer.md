@@ -1,0 +1,9 @@
+Linux
+Scala/Java
+Spark/Hadoop
+Solidity
+Typescript
+GCP
+GoLang
+Athena
+Airflow
