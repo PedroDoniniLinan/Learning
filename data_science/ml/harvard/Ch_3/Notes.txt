@@ -1,0 +1,125 @@
+------------------------------------------
+Intro
+------------------------------------------
+
+Logistic regression
+- categorical data
+
+Noisy data
+- id trends using smoothing (curve fitting/low pass filtering)
+
+ML <-> Matrices
+
+------------------------------------------
+3.1 Linear regression
+------------------------------------------
+
+Linear regression
+- simple
+- is a ML algo
+- good baseline (if you can't beat with a mroe complex, stick to it)
+- not flexible for complex analysis
+
+if X, Y follow a bivariate normal distribution then E[Y|X=x] = B0 + B1*x -> LR
+
+> Ex.: (Ex_3_1_1)
+Y = son height
+X = father height
+
+------------------------------------------
+3.1 Logistic regression
+------------------------------------------
+
+Ex.: A linear regression of Y and X could be predicted with
+p(x) = P(Y=1|X=x) = B0 + B1*x
+=> p_hat(x) = B0_hat + B1_hat*x
+
+-> for N inputs we have:
+    p(x) = B^-T * X_, where B = [B0, B1, B2, ...] Nx1 and X_ = [1, X1, X2, ...] Nx1
+    => p(x) = B0 + B1*x1 + B2*x2 + ...
+
+Then we define a rule as p_hat(x) > 0.5 then Y = 1 else 0
+
+Logistic regression is an extension of linear regression which assures that p_hat(x) E [0, 1]
+
+g(p) = log (p / 1-p) -> logistic transformation => p =  
+    - g(p) is symmetrical around zero
+    - to train a logistic model we use a maximum likelyhood estimate
+
+=> p = g^-1 (x) = e^x / (1 + e^x); x = B0 + B1*x1 + B2*x2 + ...
+
+------------------------------------------
+3.2 Smoothing
+------------------------------------------
+
+- a.k.a -> curve fitting / low band pass filter
+- the idea is detect trends and igore noise
+
+Yi = f(xi) + Ei, Ei: noise
+f(xi) = E[Yi|Xi=xi]
+
+
+Bin Smoothing
+--------------
+
+- Hypoth: f(x) chanegs slowly, so in dx, f(x) is cte
+=>E[Yi|Xi=xi] ~ u, if |xi-x0| <= d, d, u: cte
+    - d: window size/bandwidth/span
+
+- A0 is the set of i's so that |xi-x0| <= d 
+- N0 is the number of i's in A0
+=> f^(x0) = Sum(Yi) / N0 = u, for i in A0
+
+Bin Smoothing applies this calculation for each xi
+- but the estimate is a squiggly line
+- a solç is to give higher weight to the central points of the window
+
+=> f^(x0) = Sum(w0(xi) * Yi) = u, for i in A0, w0(x): kernel
+
+There are many kernels
+- Box -> sqr pulse for a window (what is used for the avg method before)
+- Ksmooth (Normal density) -> w0 segue uma distribuição normal pra cada ponto (still a bit wiggly)
+
+-: We need a small window for the cte hypo to hold => small num of pts to avg => imprecise estimates
+
+
+Local weighted regression (loess)
+----------------------------------
+
++: Larger windows 
+
+Taylor's theo: any smooth f is line close enough
+=> instead of f(x) ~ cte, we assume f(x) ~ B0 + B1*(xi - x0)
+
+=>f^(xi) = E[Yi|Xi=xi] ~ B0 + B1*(xi - x0), if |xi-x0| <= d
+    - the higher d, the smoother and less precise f^ is
+
+> loess
+    - Instead of using a fixed size window, loess can use a fixed number of closest points (d * N, N: total points and d: % of total points)
+    - instead of minimizing mse, it min a weighted mse
+
+    => Sum( w0(xi)*[Yi - (B0 + B1*(xi - x0))]^2 )
+
+    - kernel: turkey tri-weight
+        W(u) = (1 - |u|^3)^3, if  |u| <= 1
+        W(u) = 0, if  |u| > 1
+
+        => w0(xi) = W((xi - x0)/h)
+
+    - can also work with parabola aprox (Tay Theo) => f(x) ~ B0 + B1*(xi - x0) + B2*(xi - x0)^2 => bigger windows
+        * can use higher degrees
+        * higher degrees are more volatile (noisier)
+
+------------------------------------------
+3.3 Matrices
+------------------------------------------
+
+- Sometimes it is better to use matrices than df
+    * linear algebra can make some operations much mor efficient
+
+Mnist challenges:
+1. study distribution of values and how they vary by outcome
+2. remove predictors (cols) that do not provide much info
+3. zero low values (definea reasonable cutoff)
+4. binarize data => distiguish values  between writing and no writing => 1 or 0
+5. scale each predictor to have same avg and std

@@ -1,0 +1,83 @@
+------------------------------------------
+5.1 Trees motivation
+------------------------------------------
+
+LDA and QDA do not work well with many predictors -> too many parameters to estimate (especially for QDA)
+
+KNN and local regression do not suffer with too many parameters, but do with the curse of dimensionality (p predictors -> distance btw 2 points is computed in p-dimensional space)
+- to include a significant % of the data in a neighborhood, the region has to be too big with many dimensions -> descreasing the algo acc
+
+------------------------------------------
+5.1.1 Classification and regression Trees
+------------------------------------------
+
+> Ex.: predict region (3 regions) using 8 fatty acid predictors
+
+with KNN we get acc of 97% -> but we can do better cuz 1 fatty acid is only present in region C and another separates well A and B
+- can see that plotting the distribution by these two predictors
+
+so we can make a decision tree like:
+p1 < 0.065  -> C
+    else    -> p2 < 10.54   -> A
+                    else    -> B
+
+CART predict a output by partitioning the predictor space
+if the outcome is continuos then Regression Tree
+
+f(x) = E(Y|X=x) is so that we partition the predictor space into J regions
+- every xi in Rj, predict Y^ as the avg of Yi in the region
+- partitions are created recursively
+
+Hip: We have one partition
+- we find a predictor j and a value s so that R1(j, s) = {X|Xj < s} and R2(j, s) = {X|Xj >= s}
+- we define avg Y^_1 and Y^_2 as predictions in the area
+
+*we pick j and s the min SUM(i:xi in R1(j,s))( (yi - y^_1)^2 ) + SUM(i:xi in R2(j,s))( (yi - y^_2)^2 ) -> residual sum of squares (rss)
+- we can pick same predictor to make new regions
+- the stop rule is defined as a value that the residual sum should improve for a partition to be made (complexity parameter)
+- it also set a min number of observations to be partitioned (minsplit -> default = 20) and a min number of observation in each partition (minbucket -> default = round(minsplit/3))
+- otherwise we can make one partition for each point and then we would overfit
+
+we can prune branches that do not fit a cp after growing a tree
+- we can use cross validation to determine the best cp
+
+
+if the outcome is categorical then Decision tree
+- same principles as regression
+- instead of avg in each region -> majority
+- cannot use RSS -> Gini index/entropy
+
+p^_m,k -> % of obs in partition m of class k
+
+Gini = SUM(k=1->K)( p^_m,k(1-p^_m,k) )
+Entropy = -SUM(k=1->K)( p^_m,k log(p^_m,k) ), 0 * log(0) = 0
+
+In th example it worked better than logistic regression, but worse than KNN
+- limitation -> boundary cannot be smooth
+- highly interpretable
+- harder to train
+
+------------------------------------------
+5.1.2 Random forest
+------------------------------------------
+
+Address limit from decision trees -> avg multiple random decision trees
+
+for every obs j we use Tj to predict y^j
+- for continuos outcome we take avg y^j of all tree
+- for categorical we take the majority vote
+
+Bootstrap:
+- build T1,..,Tb
+- create a bootstrap train set sampling N obs from train set w/ replacement
+- build a T for each train set and use algo above to predict
+- more trees improve algo, until it converges
+- the result is somewhat smooth, not a step function like individual trees
+
+- can control smoothness by minbucket and using random set of feat to split (reduces correlation and improves acc)
+- limitation -> reduces interpretability
+- var importance -> how much each predictor impacts prediction
+
+
+************
+Ensembles combine multiple machine learning algorithms into one model to improve predictions.

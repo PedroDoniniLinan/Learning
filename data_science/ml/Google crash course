@@ -1,0 +1,74 @@
+Rules
+- Prefer Machine over complex heuristics
+- Keep the model simple
+
+Supervised ML
+- labeled data
+
+> labels: the target decision
+> features: data to represent example
+    - numerical x categorical (nominal)
+> model: created from learning from data that predicts labels
+> loss: distance between prediction and true value
+    * objtv: min loss across all dataset
+- reduce loss
+    * change model param
+
+> Gradient Descent
+    i. compute negative gradient of loss by param for all examples
+    ii. change param in the direction of the neg grad
+    > Learning rate determines the size of the steps 
+> Stochastic Gradient Descent
+    * uses batches (10 to 1000 examples) to calculate gradient for one step
+    * reduces computational time
+
+> Overfitting
+    * model too adapted to training data
+    * sol: Testset methodology (Train set x Test set)
+
+- ML assumptions
+    * Stationary assumption 
+        * ex of violation: summer / winter habits in a supermarket
+    * Pulling from same distribution
+        * ex of violation: ppl change their mind about the dog race they find cute
+
+> Testset methodology
+    * Objtv: model do well in training set and test set
+    * randomization of data before split (avoid overfit on some specific data)
+    * Larger training set => better learning
+    * Larger test set => better evaluation of model
+    * Small data amount => cross-validation
+    * Be aware you don't use test data to train model
+
+    - Model might overfit over test set by adapting it to have good performance
+        * sol: validation data
+    - Validation data is used to evaluate model and tweak param => in the end use test data
+        * they should have similar results or overfit over validation data
+
+> Model evaluation
+    - True/False Positive/negative
+    - Accuracy
+    - Precision
+    - Recall
+
+> Feature engineering
+    * number can be used directly
+    * string: onehot encoding is a good option
+
+    - good feature: 
+        * non-zero values somewhat frequently
+        * unit should be reasonable (year  for someone's age)
+            * if feature is not defined => create a bool, don't create a special value for it like -1
+        * should be Stationary (should have a consistent impact in the result)
+        * shouldn't have extreme outliers
+
+    * know / visualize / monitor your data
+
+> Feature cross
+    * create synthetic non-linears features to have better acc
+
+> Regularization
+    - After sometime of training => create another pennalization besides loss = Regularization
+        * avoid overfit
+    * ex: Sqrt of the sum of the sqrs of the weigths (we want small weights)
+

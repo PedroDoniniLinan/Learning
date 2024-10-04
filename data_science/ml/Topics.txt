@@ -1,0 +1,39 @@
+============================ General knowledge ============================ 
+
+Programming: Data scientists often work with large datasets and complex algorithms, so proficiency in at least one programming language is essential. Common choices for data scientists include Python, R, and Java.
+
+Statistics: A solid understanding of statistical concepts and techniques is crucial for data scientists. This includes understanding probability, hypothesis testing, and various statistical models.
+
+Machine learning: Machine learning is a key component of data science, and being proficient in this area will help you build and evaluate predictive models.
+
+Data manipulation and cleaning: Data scientists often work with messy, real-world data, so skills in data cleaning and manipulation are essential. This includes understanding how to handle missing or incorrect data, and how to manipulate data in order to extract insights.
+
+Data visualization: Being able to effectively visualize and communicate data is an important skill for data scientists. This includes understanding how to use tools such as Matplotlib and Seaborn in Python, or ggplot2 in R, to create clear and informative plots.
+
+Data storage and database management: Data scientists should be familiar with different types of databases and how to work with them, including SQL databases and NoSQL databases.
+
+Problem-solving and critical thinking: Data science involves using data to solve complex problems and answer important questions. Strong problem-solving and critical thinking skills are essential for success in this field.
+
+Communication: Data science involves collaborating with other people, often from different fields and with different levels of technical expertise. Being able to clearly and effectively communicate technical concepts and findings to a diverse audience is important.
+
+============================ Machine Learning ============================ 
+
+Supervised learning: This involves training a model on labeled data, where the correct output is provided for each example in the training set. Common supervised learning tasks include regression (predicting a continuous output) and classification (predicting a categorical output).
+
+Unsupervised learning: This involves training a model on unlabeled data, and is used to discover patterns or relationships in the data. Common unsupervised learning tasks include clustering and dimensionality reduction.
+
+Semi-supervised learning: This involves training a model on a mixture of labeled and unlabeled data.
+
+Reinforcement learning: This involves training an agent to take actions in an environment in order to maximize a reward.
+
+Bias and variance: Understanding the concept of bias and variance is important for evaluating and improving the performance of machine learning models. High bias can lead to underfitting, while high variance can lead to overfitting.
+
+Overfitting and underfitting: Overfitting occurs when a model is too complex and performs well on the training data but poorly on new, unseen data. Underfitting occurs when a model is too simple and performs poorly on both the training data and new, unseen data.
+
+Regularization: This is a technique used to prevent overfitting by adding a penalty to the model's complexity.
+
+Model selection and evaluation: Choosing the right model for a given task and evaluating its performance are important skills in machine learning. This involves understanding different evaluation metrics and techniques for comparing models.
+
+Neural networks: These are a type of machine learning model inspired by the structure and function of the human brain. They can be used for a wide range of tasks, including image and speech recognition.
+
+Deep learning: This is a subfield of machine learning that involves training deep neural networks, which are neural networks with many layers. Deep learning has achieved state-of-the-art results on a variety of tasks, including natural language processing and computer vision.

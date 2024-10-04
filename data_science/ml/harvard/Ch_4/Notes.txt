@@ -1,0 +1,159 @@
+------------------------------------------
+4.1 Nearest Neighboor
+------------------------------------------
+
+Distance can be used to classify observations (closer observations are from the same class)
+
+dist(A, B) = sqrt( (Ax - Bx)^2 + (Ay - By)^2 ) = sqrt( (A - B)^2 ) = |A - B| # 2D and 1D
+
+Points will have as many dimensions as features
+
+Ex.: MNIST (784 features) -> dist(1, 2) = sqrt ( sum(j=1 -> 784)( x1,j - x2,j ) )
+
+for matrices a fast way to compute dist is to compute the crossproduct -> sqrt ( crossproduct( x1,j - x2,j ) )
+
+We can also compute the distance between predictors (feat)
+
+For N observations dist between predictor 1 and 2 => dist(1, 2) = sqrt( sum(i=1 -> N)( xi,1 - xi,2 ) )
+
+* For MNIST it is logical that predictors closer on paper will also be closer mathematically
+
+------------------------------------------
+4.1.2 K-nearest neighboors (KNN)
+------------------------------------------
+
+Related to smoothing (similar to binn smoothing but easir for bigger dimensions)
+
+For each point you want to estimate the conditional prob you will take the K nearest points and take an avg
+
+* Large K -> smoother estimate
+* Small K -> more flexible but wigglier
+
+- Logistic regression will be the baseline
+
+------------------------------------------
+4.1.3 Overtraining vs Oversmoothing
+------------------------------------------
+
+Much higher acc on training set than test set (wigglier) 
+
+Ex.: k = 1 in Knn would give (almost) perfect accuracy cuz each point would be used to predict itself
+
+So to reduce Overtraining with Knn -> increase K
+To reduce Oversmoothing with Knn -> reduce K
+
+Test various super parameters (ex.: K) and choose the one that gives the highest acc for the test set (WRONG -> violates ML rules / you need to use only the training and avoid Overtraining)
+
+------------------------------------------
+4.2 K-fold Cross validation
+------------------------------------------
+
+ML goal => Find Y^ that minimizes MSE = E{1/N * sum(i=1->N)( (Y^i - Yi)^2 ) } [True error]
+
+With only one dataset we have => MSE^ = 1/N * sum(i=1->N)( (y^i - yi)^2 ) [Aparent error] 
+-> it is a random variable, so a  algo having lower error than other may be luck
+-> training algo on the same data we use to compute the Aparent error => Overtraining
+
+Cross validation aleviates both
+-> MSE supposed to be an avg of many MSE^
+-> so you will have B test sets (B->Inf)
+=> 1/B sum(b=1->B)( 1/N sum(i=1->N)( (y^bi - ybi)^2 ) ) 
+
+Cross validation tries to imitate this theoretical set with what we have
+
+Dataset -> Train + Test
+Train -> Train 1 (random) + Validate 1 (random) (b = 1)
+Train -> Train 2 (random) + Validate 2 (random) (b = 2)
+...
+Train -> Train K (random) + Validate K (random) (b = K)
+
+In a way that the size of the validation set is M = N / K, where N is the size of the training set
+
+We will use the validation set to tune the super paremeters (L)
+
+We get K MSE^b(L), where L is fixed
+
+Then we will compute MSE^(L) as the avg of MSE^b(L) to get an estimate of the true MSE for L
+So we choose L that minimizes MSE^(L)
+
+
+Then we do cross validation again with the test set, but this is to have an estimate of MSE^(L), we do not change any parameters (we avoid this because it is computational intensive)
+
+*bootstrap is a type of k-fold
+
+------------------------------------------
+4.2.1 Bootstrap
+------------------------------------------
+
+Allows to simulate a Monte Carlo estimate w/o access to the distribution 
+(Monte Carlo simulation: take into account many random variable to input top see the range of outputs)
+    * In this case he sampled 250 points from the pop calculate the median and repeated the process 10^5 to see the median distribution
+
+- We act as if the sample is the pop
+- Sample w/ replacement (it is possible to sample the same point 1+ times) -> sample the sample many times and calculate the distribution of the statistic
+- Calculate the sample statistic (in the example it is the median)
+- Theory says the bootstrap distribution should be close to the real one
+
+------------------------------------------
+4.3 Generative models
+------------------------------------------
+
+- Discriminative approaches in ML -> estimate conditional prob w/o taking predictors distribution into account (as we have done until here)
+- Generative approaches use the joint distribution of Y and X
+
+
+Naive Bayes
+--------------
+
+p(x) = P(Y=1|X=x) = f_X|Y=1(x) * P(Y=1) / [ f_X|Y=0(x) * P(Y=0) + f_X|Y=1(x) * P(Y=1)]
+
+* Too many predictor (more than 2) make this almost impossible to implement
+
+> Ex.: sex from height
+
+conditional distribution can be taken as normal (f_X|Y) -> so we use the Central Limit Theorem and we estimate it using means and sd (of each Y on the training set)
+
+Pi (Prevalence) = % of females (Naive Bayes takes it into account)
+
+p(x) = P(Y=1|X=x) = f_X|Y=1(x) * Pi / [ f_X|Y=0(x) * (1 - Pi) + f_X|Y=1(x) * Pi]
+
+in the ex the prevalence of female is lower the in the real pop, so instead of changing the treshold of the rule (p > 0.5), we use Pi = 0.5 so it improves sensitivity
+
+
+QDA
+--------------
+
+Is naive bayes for conditional prob we assume are multivariate normal
+- Harder to use with many predictors (too many correlations)
+
+> Ex.:id 2s and 7s 
+
+-> 2 predictors -> bivariate normal (f_X1,X2|Y)
+-> 4 avgs (2 per predictor = 1 per predictor per class) & 4 sds * 2 correlations
+-> boundary is a quadratic function
+-> it is worse than the kernel approach because the normal distrib does not hold true for 7s very well (curvature in the distribution)
+
+LDA
+--------------
+
+Assumes the structure fo correlation is the smae for all classes and simplify for many predictors
+- Still harder to use with many predictors (too many correlations)
+
+> Ex.:id 2s and 7s 
+
+-> boundary is a linear function
+When you look at the distrib you se the elipses (for 2s and 7s) of estimated distrib have the same angle and size (comes from assuming both classes have same eman and sd)
+
+------------------------------------------
+EX 3 Classes
+------------------------------------------
+
+> Ex.:id 1s and 2s and 7s 
+
+Confusion matrix is 3x3
+Sensitivity -> 3 values (1 per class each considering the class as a Y=1)
+Specificity -> 3 values (1 per class each considering the class as a Y=0)
+
+looking at the distribution, you can see lda will not be good (lines do not define well the boundaries)
+
+LDA and QDA do not work as well as KNN, beacuse 7s and especially 1s are not multivariate distrib

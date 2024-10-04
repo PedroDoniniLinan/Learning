@@ -1,0 +1,64 @@
+-------------------------------------------------------
+Statistics
+-------------------------------------------------------
+
+Definition: collect, organize, analyze and interpret data
+
+Individual: records in a study
+Variable: feat measured
+
+Population: Whole group of records 
+Sample: Portion of pop
+
+Parameter: describes pop (census/countries)
+Statistic: describes a sample (surveys/volunteers)
+
+Descriptive statistics: org, picturing, summ data (pop/sample)
+Inferential stat: using sample to infer about pop
+
+Quantitative meas: numerical
+    - interval
+    - ratio
+Qualitative meas: category
+    - nominal
+    - ordinal
+
+-------------------------------------------------------
+Sampling
+-------------------------------------------------------
+
+Undecoverage: Omitting individuals
+
+Sampling error: pop mean/% != sample mean/% (ok)
+Non-sampling error: bad sample (bad)
+
+
+Simple random sampling: any subset of size n in the pop has the same chance
+    - you need a list to sample
+
+Stratified sampling: divide the list into groups then apply SRS to each group
+    - need list
+    - oversampling one group bias the summary    
+
+Systematic sampling: order pop, then pick a random as start, then pick every kth
+    - bad when the data has a pattern
+    - good when you do not know what comes
+
+Kluster sampling:
+    -  divide the data into areas, pick random areas, pick all indivual from the picked areas
+
+Convinience sampling: easy sampling
+    - the result is not high risk
+    - biased
+    - undercoverage
+
+Combinig samplings
+
+-------------------------------------------------------
+Statistical study
+-------------------------------------------------------
+
+1. State a hypothesis
+2. Id pop
+3. Spec vars to meas
+4. Sampling

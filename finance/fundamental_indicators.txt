@@ -1,0 +1,17 @@
+* Queremos que esteja subindo
+Patrimonio liq. = Ativos - Passivos
+Lucro Liq. = Receita - Custos
+
+* Rentabilidade: Queremos subindo ou estável
+ROE = LL / PL
+Margem Liq. = LL / Receita
+
+* Divida
+Div. Liq. = Div. total - Cash => < 0  -> Show
+Endiv. = DL / PL => <= 100% -> Ok
+
+Payout = Dividendos / LL
+
+Div. Yield = Dividendos / mkt cap
+
+Price-to-Earnings (P/E) = mkt cap / LL anual

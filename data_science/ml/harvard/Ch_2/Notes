@@ -1,0 +1,138 @@
+------------------------------------------
+Notation
+------------------------------------------
+
+Y_i = outcome for input i
+
+X_i,n = feature n of input i
+X_i = vector of predictors(feat)
+
+For arbitraty set of feat and outcome, drop the i
+
+Upper case is for random variables (except on codes)
+
+Lower case is for observed vals
+
+------------------------------------------
+Evaluating a model (Ex_2_1_1)
+------------------------------------------
+
+==> Dataset -> Training set + Test set
+
+
+==> Overall acc = % de outcome predicted correctly
+
+Evaluating algo on the train set can lead to Overfitting, so you can try to change the cut off to ahva better result, 
+but the eval should be done on the test set
+
+Overall acc can be deceiving 
+* in the ex code, we use a rule that any height > 64 is male, while the avg female height is 65
+* train and test sets may be biased
+
+
+==> Confusion matrix 
+* sensitivity = ability of an algo to predict a positive outcome (Y = 1 for a specific class) when the outcome is indeed positive
+    -> High sensitivity: Y = 1 => Y_hat = 1
+* specificity = ability of an algo to predict a negative outcome (Y = 0 for a specific class) when the outcome is indeed negative
+    -> High specificity: Y = 0 => Y_hat = 0
+    -> High specificity: Y_hat = 1 => Y = 1
+
+__________________|Actually positive|Actually negative|
+Predicted positive| True positive   |   False positive|
+Predicted negative| False negative  |   True negative |
+
+Sensitivity = TP / (TP + FN) -> Recall = P(Y^ = 1 | Y = 1) (TPR)
+Specificity = TN / (TN + FP) = P(Y^ = 0 | Y = 0) (TNR)
+Specificity = TP / (TP + FP) -> Precision = P(Y = 1 | Y^ = 1) (PPV)
+
+* in the ex, Male have a higher prevalence
+* thus having low sensitivity does not impact overall acc that much
+* we should ask ourselves if in the real population prevalence is the same
+
+> Ex.: 
+* plane malfunction: precision is more important -> being unable to id a malfunction is more costly than landing a plane in perfect conditions (FP) 
+* crime id: recall is more important -> condemning a inocent person is more costly than leting a criminal free
+
+
+==> Balance acc: avg of spec and sens
+* F1 = 1 / [1/2 + (1/recall + 1/precision)] = 2 prec * rec / (prec + rec) (harmonic avg)
+* B = used to define how much sens is more important than spec
+* FB = 1 / [B^2/(1 + B^2) * 1/recall + 1/(1+B^2) * 1/precision]
+    -> B = 0 => FB = precision
+    -> B = Inf => FB = recall
+
+
+==> Prevalence
+* balanced sens and spec may not eb useful when prevalence is close 0 or 1
+
+> Ex.: 
+* algo to predict rare disease
+* high sens algo [P(Y^ = 1 | Y = 1) -> 1] -> P(Y^ = 1) = 1/2 = 50%
+* for doctor the precision is important, cuz prevalence = 5 in 1000 -> P(Y = 1) = 0.5%
+* P(Y = 1 | Y^ = 1) = P(Y^ = 1 | Y = 1) * P(Y = 1) / P(Y^ = 1)
+* your algo prec < 0.01 <= P(Y = 1) / P(Y^ = 1) = 1/100
+* P(Y = 1 | Y^ = 1) -> 0.01 (shit for the doctor)
+
+
+==> ROC
+* visual eval of models
+* TPR x 1 - TNR
+
+> Ex.:
+* Guessing model -> has ROC close to identity line
+* Perfect algo should have perfect sens for all specs
+
+* weak: cases where prevalence matters
+    -> solution is to print a precision recall plot
+
+==> precision x recall
+
+> Ex.:
+* guessing has a bad precision when females are Y = 1 for any recall
+
+------------------------------------------
+Conditional prob (Ex_2_1_2)
+------------------------------------------
+
+* Models cannot be perfect, but they can be very good
+
+X = {X1, ..., Xp} -> Covariates
+x = {x1, ..., xp} -> Observed value
+
+Given X, predict class k with highest among p1(x), ..., pk(x), when X = x
+
+Y^ = max_k pk(x)
+
+The better algo estimate p^k(x) the better we predict. It depends on:
+* how close max_k pk(x) to 1
+* how close p^k(x) to pk(x) -> lever only here (there are limits here)
+
+Binary outcomes -> sensitivity, specificity, acc, F1
+Continuos outcomes -> loss function
+    - squared loss function = (Y^-Y)^2 -N observations-> MSE = 1/N * SUM((Y^i - Yi)^2) [most widely user loss fc]
+    - MSE for binary outcome = acc, as (Y^i - Yi)^2 = 1 or 0
+    - MSE is a random variables
+    - we want to min the avg of MSE over many samples => E[MSE] -> expectation
+    - Y^= E[Y | X = x] -min-> E[(Y^i - Yi)^2 | X = x]
+    - GOAL: f(x) = E[Y | X = x] for any x = {x1, ..., xp}
+
+Ex:
+
+P(Y^=1|Y=1) = 0.85
+P(Y^=0|Y=0) = 0.9
+P(Y=1) = 0.02
+
+P(Y=1|Y^=1) = P(Y^=1|Y=1) * P(Y=1) / P(Y^=1)
+P(Y^=1) = P(Y=1) * P(Y^=1|Y=1) + P(Y=0) * P(Y^=1|Y=0) 
+    = 0.02 * 0.85 + 0.98 * 0.1
+    = 0.115
+P(Y=1|Y^=1) = 0.85 * 0.02 / 0.115 = 0.1478
+
+Y=1 -> 0.02
+    - Y^1 = 0.85 -> 0.85 * 0.02 = 0.017
+    - Y^0 = 0.15 -> 0.15 * 0.02 = 0.003
+Y=0 -> 0.98
+    - Y^1 = 0.1 -> 0.1 * 0.98 = 0.098
+    - Y^0 = 0.9 -> 0.9 * 0.98 = 0.882
+
+P(Y=1|Y^=1) = 0.017 / (0.017 + 0.098) = 0.1478

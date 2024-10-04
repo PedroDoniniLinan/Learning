@@ -1,13 +1,13 @@
-## Data observability
+## Data Observability
 
-- Key metrics: data freshness, accuracy, completeness, and lineage.
-- Data pipelines' health.
-- Ensures data quality and reliability in data engineering.
-- Reduces downtime and improves trust in data.
+- Monitors key metrics: data freshness, accuracy, completeness, and lineage.
+- Tracks data pipeline health and performance.
+- Ensures data quality and reliability.
+- Helps quickly detect and resolve data issues, reducing downtime.
 
-## Data governance
+## Data Governance
 
-- Track data lineage and transformations.
-- Enforce access control and security policies.
-- Standardize naming conventions and metadata.
-- Automate compliance and integrity checks.
+- Tracks data lineage and transformations.
+- Enforces access control and security policies.
+- Standardizes naming conventions and metadata management.
+- Automates compliance and integrity checks throughout the pipeline.

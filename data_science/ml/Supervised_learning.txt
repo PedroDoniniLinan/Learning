@@ -1,0 +1,19 @@
+Supervised learning is a machine learning technique that involves training a model on labeled data, where the correct output is provided for each example in the training set. This is in contrast to unsupervised learning, where the model is not provided with correct outputs and must discover patterns or relationships in the data on its own.
+
+Supervised learning is typically used when you have a clear idea of the kind of output you want your model to produce, and you have labeled data that can be used to train the model. For example, you might use supervised learning to build a model that can predict the price of a house given certain features such as the size of the house, the number of bedrooms, and the location. In this case, the model would be trained on a dataset of houses with known prices, and the goal would be to predict the price of a new, unseen house based on its features.
+
+Some common tasks that can be tackled using supervised learning include:
+
+Regression: Predicting a continuous output (e.g., the price of a house)
+Classification: Predicting a categorical output (e.g., whether a customer will churn or not)
+Sequence prediction: Predicting the next element in a sequence (e.g., predicting the next word in a sentence)
+
+It's important to note that supervised learning is not always the best approach, and you should carefully consider whether it is appropriate for your task. For example, if you have a large amount of unlabeled data and you want to discover patterns or relationships in the data, unsupervised learning may be a better choice.
+
+
+
+Purpose: training a model on labeled data to produce a specific kind of output, making predictions on new, unseen data based on patterns learned during training.
+
+Ex: predicting the price of a house based on certain features, using a dataset of houses with known prices to train the model.
+
+Goal: 

@@ -2,8 +2,8 @@
 
 
 ## Conclusion:
-- If your data mart focuses on speed and simplicity for reporting, use a star schema.
-- If you prioritize storage efficiency and need to handle complex dimension hierarchies, go with a snowflake schema.
+- Speed and simplicity for reporting => star schema.
+- Storage efficiency and complex dimension hierarchies => snowflake schema.
 - If you're managing large-scale data pipelines in a cloud data lake and want to build data progressively, the medallion architecture is your best choice.
 
 

@@ -1,0 +1,28 @@
+Data Mining
+> Classification
+    - Rules
+    - Naive Bayes
+    - Decision trees
+    - SVM
+> Clustering
+    - k-means
+    - hierarch clustering
+    - EM
+> Association rules
+
+--------------------------- // ---------------------------
+
+Classification (Supervised learning)
+> Input = intances (examples)
+    - features
+        * numerical
+        * categorical (nominal)
+    - labels (class)
+> Training
+    - Training set
+    - feature selection + labels
+> Test
+    - Test set
+    - selected features
+    - prediction
+
