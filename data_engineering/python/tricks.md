@@ -212,6 +212,8 @@ df['clean_price'] = df['price'].str.replace(r'[^0-9.]', '', regex=True).astype(f
 # Split by either a comma, a pipe, or a semicolon
 df['tags_list'] = df['raw_tags'].str.split(r'[,|;]')
 
+df_flat = df.explode(['items', 'prices'])
+
 ```
 
 ### 4. Logical Comparisons (The Cheat Sheet)

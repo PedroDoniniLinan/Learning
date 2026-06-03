@@ -12,6 +12,7 @@
     - fields, freshness/frequency
 - Example of metric definition with business
 - Example of mistake
+- Example of improving dbt project infrastructure-wise
 
 - What is my ownership
 - What is semantic layer (look for products/tools for it)

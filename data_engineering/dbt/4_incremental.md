@@ -93,6 +93,21 @@
 | `append_new_columns` | Added (NULL history) | Kept in table | Not handled |
 | `sync_all_columns` | Added | Dropped | Handled |
 
+- Fail process (dev/CI)
+
+```
+Schema changed → fail fires
+        │
+        ├── Full refresh is affordable?
+        │         └── Yes → --full-refresh, done
+        │
+        ├── Additive change only (new column)?
+        │         └── flip to append_new_columns, run once, flip back to fail
+        │
+        └── Large table, can't full refresh, complex change?
+                  └── ALTER TABLE manually + document it + ignore for one run
+```
+
 ## External
 
 https://learn.getdbt.com/learn/course/incremental-models/incremental-strategy-30min/incremental-strategy?page=11

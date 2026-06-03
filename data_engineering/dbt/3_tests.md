@@ -110,6 +110,11 @@ dbt build --store-failures              #  store the failed test results in the 
 - freshness of sources
 - temp tests during refactoring (e.g. `audit_helper` pack)
 
+#### Hints
+
+- Unique keys
+- Not-null constraints on grain fields
+
 ### Path to well tested project
 
 | Level         | definition                                       

@@ -15,6 +15,18 @@
 
 ---
 
+## Commands
+
+- `dbt parse` to check compiling, docs, jinja, etc (no run or build)
+- doc template
+```
+  dbt run-operation generate_model_yaml \
+  --args '{"model_names": [""]}' \
+  --no-use-colors 2>/dev/null > codegen_output.yml
+```
+
+---
+
 ## Best Practices
 
 ### Development Environment
@@ -93,8 +105,18 @@
 
 **Naming**
 
-    <model_type>_<source>__<name>
+    stg_<source>__<name>
     stg_jaffle_shop__orders
+
+    int_<entity>__<transformation verb or state noun>
+    int_balances__daily
+    int_rates__fiat_converted
+
+    fct_<entity>_<enriched or eop or nothing or other>
+    fct_balances_enriched
+
+    agg_<entity>_<granularity or nothing>
+    agg_transactions_daily
 
 
 ---
