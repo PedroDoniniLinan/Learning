@@ -1,0 +1,32 @@
+[
+  {
+    "id": "772229b2-3898-4c56-b6db-c8fc6cfdc961",
+    "text": "User's name is Pedro",
+    "timestamp": 1780438751,
+    "source": "auto",
+    "category": "identity",
+    "uses": 18,
+    "owner": "plinan",
+    "pinned": true,
+    "session_id": "Hello! How can I assist you today?"
+  },
+  {
+    "id": "fd588aa4-8fa0-4c1a-bd0e-f1e44a61954c",
+    "text": "User prefers gacha games like Arknights Endfield",
+    "timestamp": 1780439939,
+    "source": "auto",
+    "category": "preference",
+    "uses": 4,
+    "owner": "plinan",
+    "session_id": "Hello and Welcome"
+  },
+  {
+    "id": "782c0cae-48ce-429a-83a9-b02d4b0aa6e2",
+    "text": "I prefer concise replies",
+    "timestamp": 1780444377,
+    "source": "user",
+    "category": "fact",
+    "uses": 0,
+    "owner": "plinan"
+  }
+]
